@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcryptjs = require("bcryptjs");
 
 const userSchema = mongoose.Schema({
   email: {
@@ -18,6 +19,19 @@ const userSchema = mongoose.Schema({
     required: true,
     minlength: 6,
   },
+});
+
+userSchema.pre("save", function (next) {
+  const user = this;
+
+  if (!user.isModified("password")) return next();
+
+  const salt = bcryptjs.genSaltSync(10);
+  const hashedPass = bcryptjs.hashSync(user.password, salt);
+
+  user.password = hashedPass;
+
+  next();
 });
 
 const User = mongoose.model("User", userSchema);
