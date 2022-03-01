@@ -1,4 +1,6 @@
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
+
 const User = require("../models/User");
 
 module.exports = (req, res, next) => {
@@ -10,7 +12,7 @@ module.exports = (req, res, next) => {
 
   const token = authorization.split(" ")[1];
 
-  jwt.verify(token, "secret", async (err, payload) => {
+  jwt.verify(token, process.env.SECRET, async (err, payload) => {
     if (err) {
       return res.status(401).send("You must be logged in to access this route");
     }

@@ -22,7 +22,7 @@ exports.authRegister = async (req, res) => {
     await newUser.save();
 
     //write user to token
-    const token = jwt.sign({ userId: newUser._id }, "secret");
+    const token = jwt.sign({ userId: newUser._id }, process.env.SECRET, expire);
 
     res.status(200).json({ message: "new user created", token });
   } catch (error) {
@@ -46,7 +46,7 @@ exports.authLogin = async (req, res) => {
 
     const matched = bcryptjs.compareSync(password, user.password);
 
-    const token = jwt.sign({ userId: user._id }, "secret");
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET);
 
     if (!matched) return res.status(200).send("Incorrect Credentials");
 
