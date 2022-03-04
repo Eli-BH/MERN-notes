@@ -4,9 +4,12 @@ const app = express();
 const mongoose = require("mongoose");
 const port = process.env.PORT || 5000;
 const authRoutes = require("./routes/authRoutes");
+const axios = require("axios");
+const cors = require("cors");
 
 //middleware
 app.use(express.json());
+app.use(cors());
 
 //route
 app.get("/", (req, res) => {
@@ -14,6 +17,18 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+
+app.get("/pokemon", async (req, res) => {
+  try {
+    const { data } = await axios.get(
+      "https://pokeapi.co/api/v2/pokemon/pikachu"
+    );
+
+    res.json(data.forms);
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 //mongoose connection
 mongoose

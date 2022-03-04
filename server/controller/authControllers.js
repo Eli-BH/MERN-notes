@@ -22,7 +22,7 @@ exports.authRegister = async (req, res) => {
     await newUser.save();
 
     //write user to token
-    const token = jwt.sign({ userId: newUser._id }, process.env.SECRET, expire);
+    const token = jwt.sign({ userId: newUser._id }, process.env.SECRET);
 
     res.status(200).json({ message: "new user created", token });
   } catch (error) {

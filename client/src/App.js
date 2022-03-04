@@ -1,17 +1,12 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
 
-const App = () => {
-  const navigate = useNavigate();
+import "./App.scss";
 
+const App = () => {
   return (
     <Router>
       <Routes>
