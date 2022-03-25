@@ -15,7 +15,7 @@ const Login = () => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    if (storedToken) {
+    if (storedToken || token) {
       navigate("/");
     }
   });
@@ -23,11 +23,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
-
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      navigate("/");
-    }
   };
 
   return (
