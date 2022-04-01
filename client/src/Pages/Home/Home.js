@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const Home = () => {
+const Home = ({ currP }) => {
   const [pokemon, setPokemon] = useState("");
   const [currPokemon, setCurrPokemon] = useState({});
 
@@ -24,7 +24,8 @@ const Home = () => {
   };
 
   const routeToPokemon = () => {
-    navigate(`/pokemon`);
+    const id = currPokemon.id;
+    navigate(`/pokemon/${id}`);
   };
 
   const handleLogout = () => {
@@ -35,13 +36,13 @@ const Home = () => {
   console.log(currPokemon);
 
   return (
-    <div>
+    <div className="container">
       <div>
         <h4>User</h4>
         <button onClick={() => handleLogout()}>Logout</button>
       </div>
 
-      <h1 className="title">MERN-Dex</h1>
+      <h4 className="title">MERN-Dex</h4>
 
       <div>
         <input
@@ -53,10 +54,11 @@ const Home = () => {
         <button onClick={() => handleSearch()}>Search</button>
       </div>
 
-      <div>
+      <div style={{ height: 480 }}>
         <p>{pokemon}</p>
         <img
           src={currPokemon?.sprites?.front_default}
+          className="pokemon-img"
           alt={pokemon}
           onClick={() => routeToPokemon()}
         />
