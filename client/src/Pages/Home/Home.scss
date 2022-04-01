@@ -1,3 +1,27 @@
 h1 {
   color: red;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+.neon {
+  color: #fff;
+  font-size: 83px;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ffd30d,
+    0 0 82px #ffd30d, 0 0 92px #ffd30d, 0 0 102px #ffd30d, 0 0 151px #ffd30d;
+  font-family: "Vibur", sans-serif;
+  font-family: "Warnes", cursive;
+  font-family: "Press Start 2P", cursive;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ffd30d, 0 0 20px #ffd30d,
+      0 0 25px #ffd30d, 0 0 30px #ffd30d, 0 0 35px #ffd30d;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffd30d,
+      0 0 40px #ffd30d, 0 0 50px #ffd30d, 0 0 60px #ffd30d, 0 0 70px #ffd30d;
+  }
+}

@@ -14,7 +14,7 @@ const Home = () => {
   const handleSearch = async () => {
     try {
       const { data } = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+        `https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`
       );
 
       setCurrPokemon(data);
@@ -41,7 +41,7 @@ const Home = () => {
         <button onClick={() => handleLogout()}>Logout</button>
       </div>
 
-      <img src="https://source.unsplash.com/random" alt="pokemon title" />
+      <h1 className="title">MERN-Dex</h1>
 
       <div>
         <input
