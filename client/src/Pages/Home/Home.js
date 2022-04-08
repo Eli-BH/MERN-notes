@@ -1,3 +1,4 @@
+import ButtonComponent from "../../components/ButtonComponent";
 import axios from "axios";
 import { logoutUser } from "../../redux/authSlice";
 import { useDispatch } from "react-redux";
@@ -37,9 +38,12 @@ const Home = ({ currP }) => {
 
   return (
     <div className="container">
-      <div>
-        <h4>User</h4>
-        <button onClick={() => handleLogout()}>Logout</button>
+      <div className="navbar">
+        <div className="navbar-title">MERN-Dex</div>
+        <div className="navbar-auth">
+          <h4>User</h4>
+          <ButtonComponent action={handleLogout}>Logout</ButtonComponent>
+        </div>
       </div>
 
       <h4 className="title">MERN-Dex</h4>
@@ -48,14 +52,14 @@ const Home = ({ currP }) => {
         <input
           type="text"
           placeholder="Enter pokemon name or #"
+          className="search-input"
           value={pokemon}
           onChange={(e) => setPokemon(e.target.value)}
         />
-        <button onClick={() => handleSearch()}>Search</button>
+        <ButtonComponent action={handleSearch}>Search</ButtonComponent>
       </div>
 
       <div style={{ height: 480 }}>
-        <p>{pokemon}</p>
         <img
           src={currPokemon?.sprites?.front_default}
           className="pokemon-img"

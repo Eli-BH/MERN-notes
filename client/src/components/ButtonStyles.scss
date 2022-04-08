@@ -1,0 +1,18 @@
+.btn-component {
+  padding: 5px;
+  border: 2px rgb(102, 141, 240) solid;
+  font-size: 14px;
+  border-radius: 5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  width: 75px;
+  cursor: pointer;
+  background-color: aquamarine;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
