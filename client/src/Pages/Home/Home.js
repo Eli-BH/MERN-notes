@@ -1,16 +1,41 @@
+import { useEffect, useState } from "react";
+
 import ButtonComponent from "../../components/ButtonComponent";
 import axios from "axios";
 import { logoutUser } from "../../redux/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
-const Home = ({ currP }) => {
+const Home = () => {
   const [pokemon, setPokemon] = useState("");
   const [currPokemon, setCurrPokemon] = useState({});
+  const [user, setUser] = useState({});
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const token = localStorage.getItem("token");
+      try {
+        const { data } = await axios.get(
+          "http://localhost:4000/api/auth/home",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+
+  console.log(user);
 
   const handleSearch = async () => {
     try {
@@ -41,7 +66,7 @@ const Home = ({ currP }) => {
       <div className="navbar">
         <div className="navbar-title">MERN-Dex</div>
         <div className="navbar-auth">
-          <h4>User</h4>
+          <h4>{user ? user.username : "user"}</h4>
           <ButtonComponent action={handleLogout}>Logout</ButtonComponent>
         </div>
       </div>

@@ -2,8 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 const authRoutes = require("./routes/authRoutes");
+const functionRoutes = require("./routes/functionsRoutes");
 const axios = require("axios");
 const cors = require("cors");
 
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/function", functionRoutes);
 
 app.get("/pokemon", async (req, res) => {
   try {

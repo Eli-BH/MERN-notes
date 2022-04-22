@@ -19,6 +19,7 @@ const userSchema = mongoose.Schema({
     required: true,
     minlength: 6,
   },
+  pokemon: [String],
 });
 
 userSchema.pre("save", function (next) {

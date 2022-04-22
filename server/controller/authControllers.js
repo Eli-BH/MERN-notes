@@ -58,7 +58,5 @@ exports.authLogin = async (req, res) => {
 };
 
 exports.home = (req, res) => {
-  const { username } = req.user;
-
-  res.send(username);
+  res.json(req.user);
 };
