@@ -42,20 +42,7 @@ exports.getPokemon = async (req, res) => {
   try {
     const user = await User.findOne({ email });
 
-    return res.json(
-      user.pokemon.map(async (item) => {
-        try {
-          let { data } = await axios.get(
-            `https://pokeapi.co/api/v2/pokemon/${item}`
-          );
-
-          console.log(data.name);
-          return data.name;
-        } catch (err) {
-          return err;
-        }
-      })
-    );
+    res.send(user.pokemon);
   } catch (error) {
     console.log(error);
     res.send(error.message);
